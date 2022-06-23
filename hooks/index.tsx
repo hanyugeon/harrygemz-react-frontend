@@ -66,7 +66,7 @@ export const useMetadata = () => {
       // axios 라이브러리를 통해 pinata에 있는 메타데이터 가져오기.
       const response = await axios.get(`${process.env.NEXT_PUBLIC_METADATA_URI}/${gemTokenRank}/${gemTokenType}.json`);
 
-      setMetadataURI(response.data)
+      setMetadataURI(response.data);
     } catch(error) {
       console.error(error);
     }

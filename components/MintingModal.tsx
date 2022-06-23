@@ -14,14 +14,13 @@ import {
 import { MINT_GEM_TOKEN_ADDRESS } from '../caverConfig';
 import { GemTokenData } from '../interfaces';
 
-
 interface MintingModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
 const MintingModal: FC<MintingModalProps> = ({ isOpen, onClose }) => {
-  // hooks
+  // custom hooks
   const { account } = useAccount();
   const { caver, mintGemTokenContract, saleGemTokenContract } = useCaver();
   const { metadataURI, getMetadata } = useMetadata();
@@ -49,20 +48,20 @@ const MintingModal: FC<MintingModalProps> = ({ isOpen, onClose }) => {
       if (response) {
         const latestMintedGemToken: GemTokenData = await saleGemTokenContract.methods
         .getLatestMintedGemToken(account)
-        .call()
+        .call();
 
         getMetadata(latestMintedGemToken.gemTokenRank, latestMintedGemToken.gemTokenType);
 
         console.log(latestMintedGemToken);
       }
 
-      console.log(response)
+      console.log(response);
     } catch(error) {
       console.log(error);
     }
   };
 
-  useEffect(() => console.log(metadataURI), [metadataURI])
+  useEffect(() => console.log(metadataURI), [metadataURI]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

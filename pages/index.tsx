@@ -14,7 +14,6 @@ const Home: NextPage = () => {
       </Flex>
       <MintingModal isOpen={isOpen} onClose={onClose}/>
     </>
-    
   );
 };
 

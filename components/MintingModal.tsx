@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useAccount, useCaver, useMetadata } from '../hooks';
 import { 
   Button,
@@ -9,10 +9,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text
+  Text, 
+  Flex
 } from '@chakra-ui/react';
 import { MINT_GEM_TOKEN_ADDRESS } from '../caverConfig';
 import { GemTokenData } from '../interfaces';
+import GemCard from './GemCard';
 
 interface MintingModalProps {
   isOpen: boolean;
@@ -27,14 +29,7 @@ const MintingModal: FC<MintingModalProps> = ({ isOpen, onClose }) => {
 
   const onClickMint = async () => {
     try {
-      if(!account || !caver || !mintGemTokenContract)  return;
-
-      // caver-js의 버그, send함수가 kaikas지갑이랑 같이 사용이 안됨
-      // const response = await mintGemTokenContract.methods.mintGemToken().send({
-      //   from: account,
-      //   value: caver.utils.convertToPeb(1, "KLAY"),
-      //   gas: 3000000,
-      // })
+      if(!account || !caver || !mintGemTokenContract)  return ;
 
       const response = await caver.klay.sendTransaction({
         type: "SMART_CONTRACT_EXECUTION",
@@ -51,17 +46,11 @@ const MintingModal: FC<MintingModalProps> = ({ isOpen, onClose }) => {
         .call();
 
         getMetadata(latestMintedGemToken.gemTokenRank, latestMintedGemToken.gemTokenType);
-
-        console.log(latestMintedGemToken);
       }
-
-      console.log(response);
     } catch(error) {
       console.log(error);
     }
   };
-
-  useEffect(() => console.log(metadataURI), [metadataURI]);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -70,8 +59,16 @@ const MintingModal: FC<MintingModalProps> = ({ isOpen, onClose }) => {
           <ModalHeader>Miting</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Text>Would you like to proceed with the minting?</Text>
-            <Text>(1 klay will be consumed.)</Text>
+            {metadataURI ? (
+              <Flex justifyContent="center">
+                <GemCard metadataURI={metadataURI}/>
+              </Flex>
+              ) : (
+                <>
+                  <Text>Would you like to proceed with the minting?</Text>
+                  <Text>(1 klay will be consumed.)</Text>
+                </>
+              )}
           </ModalBody>
 
           <ModalFooter>

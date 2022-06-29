@@ -76,8 +76,17 @@ const MyGemz: FC = () => {
   return (
   <Box bg="#FFD3E8" p={12} minH="100vh">
     <Box py={4} textAlign="center">
-      <Text d="inline-block">Sale Status: {saleStatus ? "on Sale" : "NOT ON SALE"}</Text>
-      <Button size="xs" ml={2} colorScheme={saleStatus ? "blue" : "pink"} onClick={toggleSaleStatus}>{saleStatus ? "Cancel" : "Approve"}</Button>
+      <Text d="inline-block">
+        Sale Status: {saleStatus ? "on Sale" : "NOT ON SALE"}
+      </Text>
+      <Button 
+        size="xs" 
+        ml={2} 
+        colorScheme={saleStatus ? "blue" : "pink"} 
+        onClick={toggleSaleStatus}
+      >
+          {saleStatus ? "Cancel" : "Approve"}
+      </Button>
     </Box>
     <Grid templateColumns="repeat(4, 1fr)" py={4}>
         {myGemTokens?.map((v, i) => {

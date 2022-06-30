@@ -49,7 +49,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Flex 
-        bg="#E5E5E5" 
+        bg="#FFD3E8" 
         minH="100vh" 
         justifyContent="center" 
         alignItems="center" 

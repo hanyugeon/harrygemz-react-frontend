@@ -6,6 +6,8 @@ import {
   SALE_GEM_TOKEN_ABI,
   SALE_GEM_TOKEN_ADDRESS,
 } from "../caverConfig";
+import { GemTokenMetadata } from "../interfaces";
+import axios from "axios";
 
 export const useAccount = () => {
   const [account, setAccount] = useState<string>("");
@@ -31,8 +33,8 @@ export const useAccount = () => {
 
 export const useCaver = () => {
   const [caver, setCaver] = useState<Caver | undefined>(undefined);
-  const [mintGemTokenContract, serMintGemTokenContract] = useState<Caver | undefined>(undefined);
-  const [saleGemTokenContract, serSaleGemTokenContract] = useState<Caver | undefined>(undefined);
+  const [mintGemTokenContract, setMintGemTokenContract] = useState<Caver | undefined>(undefined);
+  const [saleGemTokenContract, setSaleGemTokenContract] = useState<Caver | undefined>(undefined);
 
   useEffect(() => {
     if(window.klaytn) {
@@ -43,13 +45,32 @@ export const useCaver = () => {
   useEffect(() => {
     if(!caver) return;
 
-    serMintGemTokenContract(
+    setMintGemTokenContract(
       caver.contract.create(MINT_GEM_TOKEN_ABI, MINT_GEM_TOKEN_ADDRESS)
     );
-    serSaleGemTokenContract(
+    setSaleGemTokenContract(
       caver.contract.create(SALE_GEM_TOKEN_ABI, SALE_GEM_TOKEN_ADDRESS)
     );
   }, [caver])
 
   return { caver, mintGemTokenContract, saleGemTokenContract };
 };
+
+export const useMetadata = () => {
+  const [metadataURI, setMetadataURI] = useState<GemTokenMetadata | undefined>(
+    undefined
+  );
+
+  const getMetadata = async (gemTokenRank: string, gemTokenType: string) => {
+    try {
+      // axios 라이브러리를 통해 pinata에 있는 메타데이터 가져오기.
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_METADATA_URI}/${gemTokenRank}/${gemTokenType}.json`);
+
+      setMetadataURI(response.data);
+    } catch(error) {
+      console.error(error);
+    }
+  };
+
+  return { metadataURI, getMetadata };
+}

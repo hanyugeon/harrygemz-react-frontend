@@ -29,6 +29,11 @@ const Header: FC = () => {
             my-gemz
           </Button>
         </Link>
+        <Link href="sale">
+          <Button size="sm" variant="ghost">
+            Sale
+          </Button>
+        </Link>
       </Box>
       <Box>
         <Text>

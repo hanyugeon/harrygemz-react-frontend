@@ -9,6 +9,7 @@ import {
 import { GemTokenMetadata } from "../interfaces";
 import axios from "axios";
 
+// useWallet으로 대체가능.
 export const useAccount = () => {
   const [account, setAccount] = useState<string>("");
 
@@ -31,6 +32,7 @@ export const useAccount = () => {
   return { account };
 };
 
+// useContract로 대체하면 될 것 같음.
 export const useCaver = () => {
   const [caver, setCaver] = useState<Caver | undefined>(undefined);
   const [mintGemTokenContract, setMintGemTokenContract] = useState<Caver | undefined>(undefined);
@@ -56,6 +58,7 @@ export const useCaver = () => {
   return { caver, mintGemTokenContract, saleGemTokenContract };
 };
 
+// 메타데이터 관련은 아직 보류. ( 나중에 할 것 )
 export const useMetadata = () => {
   const [metadataURI, setMetadataURI] = useState<GemTokenMetadata | undefined>(
     undefined

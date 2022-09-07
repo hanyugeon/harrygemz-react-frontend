@@ -1,5 +1,5 @@
-import type { StyleConfig } from "@chakra-ui/theme-tools"
-import { extendTheme, ThemeOverride } from "@chakra-ui/react"
+import type { StyleConfig } from '@chakra-ui/theme-tools'
+import { extendTheme, ThemeOverride } from '@chakra-ui/react'
 
 const Text: StyleConfig = {
   baseStyle: {
@@ -9,24 +9,22 @@ const Text: StyleConfig = {
     fontWeight: 400
   },
   variants: {
-    headerH1: {
+    H1: {
       fontWeight: 'bold',
-      fontSize: '24px',
-      color: 'white',
+      fontSize: '24px'
     },
-    headerH2: {
-      fontSize: '14px',
-      color: 'white',
+    H2: {
+      fontSize: '20px'
     },
-    contentsH1: {
-      fontSize: '20px',
+    H3: {
+      fontSize: '16px'
     },
-    contentsH2: {
-      fontSize: '16px',
+    H4: {
+      fontSize: '14px'
     },
-    footerH1: {
-      fontSize: "12px",
-    },
+    H5: {
+      fontSize: '12px'
+    }
   }
 }
 
@@ -38,14 +36,18 @@ const Button: StyleConfig = {
     fontWeight: 400
   },
   variants: {
-    header: {
+    navigator: {
       fontWeight: 'bold',
       fontSize: '18px',
-      bgColor: 'brand.200',
+      bgColor: 'brand.200'
+    },
+    address: {
+      fontSize: '14px',
+      bgColor: 'brand.200'
     },
     minting: {
       fontSize: '18px',
-      bgColor: 'brand.300',
+      bgColor: 'brand.300'
     },
     modalAccept: {
       w: '100px',
@@ -60,16 +62,16 @@ const Button: StyleConfig = {
       bgColor: 'brand.200'
     },
     sale_status: {
-      fontSize: '12px',
+      fontSize: '12px'
     },
     sell: {
       fontSize: '14px',
-      bgColor: 'brand.200',
+      bgColor: 'brand.200'
     },
     purchase: {
       fontSize: '14px',
-      bgColor: 'brand.200',
-    },
+      bgColor: 'brand.200'
+    }
   }
 }
 
@@ -79,22 +81,22 @@ const colors = {
   brand: {
     100: '#FFD3EB',
     200: '#E88CBD',
-    300: '#D53F8c',
+    300: '#D53F8c'
   },
-  negative: '#3182CE',
+  negative: '#3182CE'
 }
 
 const shadows = {
-  default: '0px 0px 20px 0px #00000040',
+  default: '0px 0px 20px 0px #00000040'
 }
 
 const theme: ThemeOverride = extendTheme({
   components: {
     Text,
-    Button,
+    Button
   },
   colors,
-  shadows,
+  shadows
 })
 
 export default theme

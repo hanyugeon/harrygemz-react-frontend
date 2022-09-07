@@ -1,11 +1,10 @@
-import React from "react"
+import React from 'react'
 import type { NextPage } from 'next'
-import MintingContainer from "./MintingContainer"
-import MintingTable from "./MintingTable"
-import MintingArea from "./MintingArea"
+import MintingContainer from './MintingContainer'
+import MintingTable from './MintingTable'
+import MintingArea from './MintingArea'
 
 const Minting: NextPage = () => {
-  
   return (
     <MintingContainer>
       <MintingTable />

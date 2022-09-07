@@ -1,5 +1,5 @@
-import React from 'react';
-import type { NextPage } from 'next';
+import React from 'react'
+import type { NextPage } from 'next'
 import {
   TableContainer,
   Table,
@@ -7,13 +7,13 @@ import {
   Tr,
   Th,
   Td,
-  Tbody,
-} from '@chakra-ui/react';
+  Tbody
+} from '@chakra-ui/react'
 
 const MintingTable: NextPage = () => {
   return (
-    <TableContainer mb="4px">
-      <Table>
+    <TableContainer mb='4px'>
+      <Table size={{ base: 'sm', md: 'md', lg: 'lg' }}>
         <Thead>
           <Tr>
             <Th>Rank\Type</Th>

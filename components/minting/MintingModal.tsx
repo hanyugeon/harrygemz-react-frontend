@@ -1,6 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import { 
+import {
   Button,
   Modal,
   ModalBody,
@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Text, 
+  Text,
   Flex
 } from '@chakra-ui/react'
 import GemCard from '../GemCard'
@@ -64,31 +64,33 @@ const MintingModal: NextPage<MintingModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Minting</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            {metadataURI ? (
-              <Flex justifyContent="center">
-                <GemCard metadataURI={metadataURI}/>
-              </Flex>
-              ) : (
-                <>
-                  <Text>Would you like to proceed with the minting?</Text>
-                  <Text>(1 klay will be consumed.)</Text>
-                </>
-              )}
-          </ModalBody>
-          <ModalFooter>
-            <Button variant='modalAccept' onClick={onClick}>Minting</Button>
-            {/* onClick={onClickMint} */}
-            <Button variant='modalCancel' ml="4px" onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Minting</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          {metadataURI ? (
+            <Flex justifyContent='center'>
+              <GemCard metadataURI={metadataURI} />
+            </Flex>
+          ) : (
+            <>
+              <Text>Would you like to proceed with the minting?</Text>
+              <Text>(1 klay will be consumed.)</Text>
+            </>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button variant='modalAccept' onClick={onClick}>
+            Minting
+          </Button>
+          {/* onClick={onClickMint} */}
+          <Button variant='modalCancel' ml='4px' onClick={onClose}>
+            Close
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }
 

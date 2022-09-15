@@ -6,9 +6,15 @@ export interface LayoutProps {
 }
 
 // buttons
-export interface InternalButtonProps {
+export interface HeaderInternalButtonProps {
   name: string
   route: string
+}
+
+export interface MintingModalButtonProps {
+  name: string
+  variant: string
+  event: () => void
 }
 
 // GemTokens
@@ -27,4 +33,9 @@ export interface GemTokenMetadata {
     { 0: { trait_type: 'Rank'; value: number } },
     { 1: { trait_type: 'Type'; value: number } }
   ]
+}
+
+// GemCards
+export interface GemCardProps {
+  metadataURI: GemTokenMetadata | undefined
 }

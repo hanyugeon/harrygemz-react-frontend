@@ -2,9 +2,9 @@ import React from 'react'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { Button } from '@chakra-ui/react'
-import { InternalButtonProps } from '../../interfaces'
+import { HeaderInternalButtonProps } from '../../interfaces'
 
-const HeaderInternalButton: NextPage<InternalButtonProps> = ({
+const HeaderInternalButton: NextPage<HeaderInternalButtonProps> = ({
   name,
   route
 }) => {

@@ -1,14 +1,6 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import {
-  TableContainer,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Td,
-  Tbody
-} from '@chakra-ui/react'
+import { TableContainer, Table, Thead, Tr, Th } from '@chakra-ui/react'
 
 const MintingTable: NextPage = () => {
   return (
@@ -23,6 +15,7 @@ const MintingTable: NextPage = () => {
             <Th>4</Th>
           </Tr>
         </Thead>
+        {/* getMintingTableBody */}
         {/* {gemTokenCount?.map((v, i) => {
           return (
             <Tbody key={i}>

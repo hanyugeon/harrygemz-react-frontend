@@ -1,18 +1,14 @@
 import React from 'react'
 import type { NextPage } from 'next'
 import {
-  Button,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Text,
-  Flex
+  ModalHeader
 } from '@chakra-ui/react'
-import GemCard from '../GemCard'
+import MintingModalButton from './MintingModalButton'
+import { proceedMinting } from '../../utils'
 
 interface MintingModalProps {
   isOpen: boolean
@@ -56,38 +52,28 @@ const MintingModal: NextPage<MintingModalProps> = ({ isOpen, onClose }) => {
   //   }
   // };
 
-  // const [metadataURI, setMetadataURI] = useState<string>("")
-  const metadataURI = null
-  const onClick = () => {
+  // const { metadataURI, getMetadata } = useMetadata();
+  const metadataURI = undefined
+  const onClickEvent = () => {
     console.log('hello')
   }
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
       <ModalContent>
         <ModalHeader>Minting</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          {metadataURI ? (
-            <Flex justifyContent='center'>
-              <GemCard metadataURI={metadataURI} />
-            </Flex>
-          ) : (
-            <>
-              <Text>Would you like to proceed with the minting?</Text>
-              <Text>(1 klay will be consumed.)</Text>
-            </>
-          )}
-        </ModalBody>
+        <ModalBody>{proceedMinting(metadataURI)}</ModalBody>
         <ModalFooter>
-          <Button variant='modalAccept' onClick={onClick}>
-            Minting
-          </Button>
-          {/* onClick={onClickMint} */}
-          <Button variant='modalCancel' ml='4px' onClick={onClose}>
-            Close
-          </Button>
+          <MintingModalButton
+            name='Minting'
+            variant='modalAccept'
+            event={onClickEvent}
+          />
+          <MintingModalButton
+            name='Close'
+            variant='modalCancel'
+            event={onClose}
+          />
         </ModalFooter>
       </ModalContent>
     </Modal>

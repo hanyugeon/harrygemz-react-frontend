@@ -1,5 +1,29 @@
 # harrygemz-react-frontend
 
+- 22.08.29: Polygon으로 이관 및 코드 리팩토링 작업 시작.
+- 22.09.06: custom theme 작성, font 적용, 컴포넌트 세분화 시작.
+- [ ] 컴포넌트 세분화
+
+  - [x] minting components
+  - [ ] ui components
+  - [ ] my-page compoents
+  - [ ] purchase compoents
+
+- 주 목표:
+  - Klaytn -> Polygon 이관
+  - FrontEnd 코드 리팩토링
+    - 컴포넌트 세분화
+    - Chakra-UI 적극 활용(custom theme...)
+    - font 적용
+    - Mobile 레이아웃 구성(반응형 웹페이지)
+    - 코드를 누가봐도 알아보기 쉽게, 고민하고 수정하는 작업
+  - custom hooks 세분화
+  - contracts config 다시 만들기
+  - use-wallet 오픈소스를 활용한 유저 계정 관리
+  - caver.js -> ehters.js 로 바꾸기
+
+> 이 코드는 https://www.inflearn.com/course/%EB%94%94%EC%95%B1-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-2/dashboard 강의를 토대로 작성된 코드 입니다.
+
 # 프로젝트를 마치며.
 
 ## 코드

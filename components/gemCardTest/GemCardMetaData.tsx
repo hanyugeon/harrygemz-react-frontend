@@ -1,8 +1,9 @@
+import React from 'react'
+import type { NextPage } from 'next'
 import { Box, Image, Text } from '@chakra-ui/react'
-import React, { FC } from 'react'
-import { GemCardProps } from '../interfaces'
+import { GemCardProps } from '../../interfaces'
 
-const GemCard: FC<GemCardProps> = ({ metadataURI }) => {
+const GemCardMetaData: NextPage<GemCardProps> = ({ metadataURI }) => {
   return (
     <Box>
       <Image src={metadataURI?.image} fallbackSrc='loading.png' alt='gem' />
@@ -12,4 +13,4 @@ const GemCard: FC<GemCardProps> = ({ metadataURI }) => {
   )
 }
 
-export default GemCard
+export default GemCardMetaData

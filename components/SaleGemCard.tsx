@@ -1,71 +1,70 @@
-import { Box, Button, Text } from "@chakra-ui/react";
-import { FC, useEffect } from "react";
-import { SALE_GEM_TOKEN_ADDRESS } from "../caverConfig";
-import { useAccount, useCaver, useMetadata } from "../hooks";
-import { GemTokenData } from "../interfaces";
-import GemCard from "./GemCard";
+import { Box } from '@chakra-ui/react'
+import { FC, useEffect, useState } from 'react'
+import { SALE_GEM_TOKEN_ADDRESS } from '../caverConfig'
+import { useAccount, useCaver, useMetadata } from '../hooks'
+import { GemTokenData } from '../interfaces'
+import GemCard from './gemCardTest'
 
 interface SaleGemCardProps {
-  gemTokenData: GemTokenData;
-  getSaleGemTokens: () => Promise<void>;
-  setSaleGemTokens: Dispatch<SetStateAction<GemTokenData[] | undefined>>;
+  gemTokenData: GemTokenData
+  getSaleGemTokens: () => Promise<void>
+  setSaleGemTokens: Dispatch<SetStateAction<GemTokenData[] | undefined>>
 }
 
 const SaleGemCard: FC<SaleGemCardProps> = ({
-  gemTokenData, 
-  getSaleGemTokens, 
+  gemTokenData,
+  getSaleGemTokens,
   setSaleGemTokens
 }) => {
-  const { account } = useAccount();
-  const { caver, saleGemTokenContract } = useCaver();
-  const { metadataURI, getMetadata } = useMetadata();
+  const { account } = useAccount()
+  const { caver, saleGemTokenContract } = useCaver()
+  const { metadataURI, getMetadata } = useMetadata()
+
+  const [price, setPrice] = useState<string | undefined>('')
+
+  useEffect(() => {
+    setPrice(caver?.utils.convertFromPeb(gemTokenData.tokenPrice, 'KLAY'))
+  }, [account, saleGemTokenContract])
 
   const onClickBuy = async () => {
     try {
-      if (!account || !caver || !saleGemTokenContract) return;
+      if (!account || !caver || !saleGemTokenContract) return
 
       const response = await caver.klay.sendTransaction({
-        type: "SMART_CONTRACT_EXECUTION",
+        type: 'SMART_CONTRACT_EXECUTION',
         from: account,
         to: SALE_GEM_TOKEN_ADDRESS,
-        gas: "3000000",
+        gas: '3000000',
         data: saleGemTokenContract.methods
           .purchaseGemToken(gemTokenData.tokenId)
           .encodeABI(),
-        value: gemTokenData.tokenPrice,
-      });
+        value: gemTokenData.tokenPrice
+      })
 
       if (response.status) {
-        setSaleGemTokens(undefined);
-        getSaleGemTokens();
+        setSaleGemTokens(undefined)
+        getSaleGemTokens()
       }
-
-    } catch(error) {
-      console.error(error);
+    } catch (error) {
+      console.error(error)
     }
   }
 
   useEffect(() => {
-    getMetadata(gemTokenData.gemTokenRank, gemTokenData.gemTokenType);
-  }, []);
+    getMetadata(gemTokenData.gemTokenRank, gemTokenData.gemTokenType)
+  }, [])
 
   return (
-    <Box>
-      <GemCard metadataURI={metadataURI}/>
-      <Text>
-        {caver?.utils.convertFromPeb(gemTokenData.tokenPrice, "KLAY")} KLAY
+    <Box w='200px' m='8px'>
+      <GemCard metadataURI={metadataURI} saleStatus={true} price={price} />
+      {/* <Text>
+        {caver?.utils.convertFromPeb(gemTokenData.tokenPrice, 'KLAY')} KLAY
       </Text>
-      <Button 
-        size="sm"
-        ml={2}
-        bg="#E88CBD"
-        color="#FFFFFF"
-        onClick={onClickBuy}
-      >
+      <Button variant='purchase' size='sm' ml={2} onClick={onClickBuy}>
         Purchase
-      </Button>
+      </Button> */}
     </Box>
   )
 }
 
-export default SaleGemCard;
+export default SaleGemCard

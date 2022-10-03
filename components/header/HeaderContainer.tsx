@@ -13,7 +13,7 @@ const HeaderContainer: NextPage<LayoutProps> = ({ children }) => {
       position='fixed'
       zIndex='1'
       justifyContent='space-between'
-      p={{ base: '6px', md: '12px' }}
+      p={{ base: '4px', sm: '6px', md: '12px' }}
     >
       {children}
     </HStack>

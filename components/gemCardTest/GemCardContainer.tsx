@@ -7,9 +7,8 @@ const GemCardContainer: NextPage<LayoutProps> = ({ children }) => {
   return (
     <VStack
       bg='white'
-      w='200px'
+      w={{ base: '120px', sm: '140px', md: '160px' }}
       shadow='default'
-      m='8px'
       p='8px'
       borderRadius='1rem'
     >

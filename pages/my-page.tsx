@@ -74,8 +74,12 @@ const MyGemz: NextPage = () => {
   }, [account, mintGemTokenContract])
 
   return (
-    <Box bg='#FFD3E8' p='48px' minH='100vh'>
-      <VStack py='16px' textAlign='center'>
+    <Box
+      bg='brand.100'
+      p={{ base: '8px', sm: '10px', md: '32px' }}
+      minH='100vh'
+    >
+      <VStack py={{ base: '120px', md: '64px' }} textAlign='center'>
         <Text>Sale Status: {saleStatus ? 'on Sale' : 'NOT ON SALE'}</Text>
         <Button
           size='xs'
@@ -86,7 +90,14 @@ const MyGemz: NextPage = () => {
           {saleStatus ? 'Cancel' : 'Approve'}
         </Button>
       </VStack>
-      <Grid templateColumns='repeat(4, 1fr)' gap='2px'>
+      <Grid
+        templateColumns={{
+          base: 'repeat(2, 1fr)',
+          sm: 'repeat(3, 1fr)',
+          md: 'repeat(4, 1fr)'
+        }}
+        gap='2px'
+      >
         {myGemTokens?.map((v, i) => {
           return <MyGemCard key={i} gemTokenData={v} />
         })}

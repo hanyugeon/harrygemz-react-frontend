@@ -55,7 +55,7 @@ const SaleGemCard: FC<SaleGemCardProps> = ({
   }, [])
 
   return (
-    <Box w='200px' m='8px'>
+    <Box w={{ base: '125px', sm: '150px', md: '180px' }} m='8px'>
       <GemCard metadataURI={metadataURI} saleStatus={true} price={price} />
       {/* <Text>
         {caver?.utils.convertFromPeb(gemTokenData.tokenPrice, 'KLAY')} KLAY

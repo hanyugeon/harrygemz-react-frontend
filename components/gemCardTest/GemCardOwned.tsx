@@ -1,15 +1,15 @@
 import React from 'react'
 import type { NextPage } from 'next'
-import { HStack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 import GemCardSetPrice from './GemCardSetPrice'
 import GemCardButtonSell from './GemCardButtonSell'
 
 const GemCardOwned: NextPage = () => {
   return (
-    <HStack>
+    <Stack direction='column'>
       <GemCardSetPrice />
       <GemCardButtonSell />
-    </HStack>
+    </Stack>
   )
 }
 

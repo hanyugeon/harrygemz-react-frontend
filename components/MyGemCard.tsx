@@ -52,7 +52,7 @@ const MyGemCard: FC<MyGemCardProps> = ({ gemTokenData }) => {
   }, [account, saleGemTokenContract])
 
   return (
-    <Box w='200px' m='8px'>
+    <Box w={{ base: '120px', sm: '140px', md: '160px' }} m='8px'>
       {/* <GemCard metadataURI={metadataURI} saleStatus={false} /> */}
       {myGemPrice === '0' ? (
         <GemCard metadataURI={metadataURI} saleStatus={false} price={price} />
